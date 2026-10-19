@@ -174,8 +174,17 @@ table.compact td.num{white-space:nowrap}
 @media screen and (max-width:900px){.grid-4,.grid-5{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
 .mp a.tab{font-size:12px;font-weight:600;padding:6px 14px;border-radius:2px;border:1px solid var(--border);background:#fff;color:var(--navy);text-decoration:none}   /* вкладка-ссылка на отчёт другого маркетплейса */
 .mp a.tab:hover{border-color:var(--navy)}
+</style><style>
+.mp .vw{margin-left:auto;display:inline-flex;align-items:stretch;border:1px solid #134063;border-radius:2px;overflow:hidden;background:#fff}
+.mp .vw a{font-size:12px;font-weight:600;padding:6px 12px;color:#134063;text-decoration:none;white-space:nowrap}
+.mp .vw a+a{border-left:1px solid #134063}
+.mp .vw a.on{background:#134063;color:#fff}
+.mp .vw select{font:inherit;font-size:12px;font-weight:600;color:#134063;background:#fff;border:0;border-left:1px solid #134063;padding:0 6px;cursor:pointer}
+.mp a.tab{font-size:12px;font-weight:600;padding:6px 14px;border-radius:2px;border:1px solid #DFE7EE;background:#fff;color:#134063;text-decoration:none}
+@media screen and (max-width:700px){.mp .vw{margin-left:0}}
+@media print{.mp .vw{display:none}}
 </style></head><body><div class="wrap">
-<nav class="mp"><span class="on">Wildberries</span><a class="tab" href="https://ivanbobylev1991-hub.github.io/piro-ozon-report/">Ozon</a><span class="off">Яндекс Маркет · скоро</span><span class="off">Lamoda · скоро</span></nav>
+<nav class="mp"><span class="on">Wildberries</span><a class="tab" href="https://ivanbobylev1991-hub.github.io/piro-ozon-report/">Ozon</a><span class="off">Яндекс Маркет · скоро</span><span class="off">Lamoda · скоро</span><span class="vw" data-cur="live"><a href="./" class="on">Каждый день</a><a href="2026-10-05.html">Неделя 05.10–11.10</a><select aria-label="Другие недели" onchange="if(this.value)location.href=this.value"><option value="">Другие недели</option><option value="2026-10-05.html">05.10–11.10</option><option value="2026-09-28.html">28.09–04.10</option></select></span></nav>
 <header class="hero"><div class="kick">PIRO · Wildberries · обновляется каждое утро</div><h1>Данные на 18.10.2026, вс</h1><div class="rule"></div><div class="sub">Последние 7 дней (12.10–18.10) против предыдущих (05.10–11.10): заказы <b>203 → 340 (+67%)</b>, реклама <b>50,9 → 57,1 тыс ₽ (+12%)</b>, TACoS <b>13,9 → 9,7%</b>, СПП <b>30 → 32%</b>. Прибыль и маржа — по последней закрытой неделе в WILD CRM (05.10–11.10): <b>−7 595 ₽</b>, маржа <b>−2,6%</b>; неделя 12.10–18.10 появится в понедельник 19.10 после 12:00 МСК.</div><div class="sub" style="margin-top:14px"><b>Разбор недели 05.10–11.10.</b> Заказы выросли — <b>170 → 203 (+19%)</b>, прибыль ушла в минус — <b>35 404 → −7 595 ₽</b> при выручке 366 → 294 тыс ₽ (−20%). Маржа 9,7% → −2,6%. Вязаные новинки M-серии — 57 → 131 заказ, летние поло — 113 → 72. Реклама <b>25,3 → 50,9 тыс ₽ (+101%)</b>, TACoS 8,8% → 13,9% при норме 8%: на новинки 9,3 → 48,0 тыс ₽ (реклама включена на всех семи с 05.10), на летние 16,0 → 2,9 тыс ₽ (010 и 011 без рекламы с 06.10). По артикулам: новинки −30,2 тыс ₽, летние и прочие +23,8 тыс ₽. СПП 37,5% → 29,6% (−7,9 п.п.), средняя цена для покупателя 2 031 → 2 436 ₽. С 12.10 меняем рекламную стратегию по новинкам и снова включаем рекламу на 010 и 011.</div></header>
 <section class="section"><div class="kick">Последние 7 дней · 12.10–18.10</div><h2>Кабинет</h2><div class="rule"></div>
 <div class="grid grid-5"><div class="kpi"><div class="label">Заказы</div>
@@ -341,4 +350,14 @@ document.querySelectorAll('.mc').forEach(function(w){
   w.querySelectorAll('svg').forEach(function(svg){svg.addEventListener('mouseleave',function(){
     tip.style.display='none';svg.querySelector('.mguide').style.display='none';});});
 });
+</script><script>
+(function(){var v=document.querySelector('.vw');if(!v||location.protocol==='file:')return;
+fetch('weeks.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(w){v.innerHTML=vw(w.weeks||[],v.dataset.cur);}).catch(function(){});
+function lab(m){var d=new Date(m+'T00:00:00'),e=new Date(d.getTime()+6*864e5),f=function(x){return('0'+x.getDate()).slice(-2)+'.'+('0'+(x.getMonth()+1)).slice(-2);};return f(d)+'–'+f(e);}
+function vw(ws,cur){var h='<a href="./"'+(cur==='live'?' class="on"':'')+'>Каждый день</a>';
+ if(ws.length){h+='<a href="'+ws[0]+'.html"'+(cur===ws[0]?' class="on"':'')+'>Неделя '+lab(ws[0])+'</a>';
+  if(cur!=='live'&&cur!==ws[0])h+='<a href="'+cur+'.html" class="on">Неделя '+lab(cur)+'</a>';
+  if(ws.length>1){h+='<select aria-label="Другие недели" onchange="if(this.value)location.href=this.value"><option value="">Другие недели</option>';
+   ws.forEach(function(m){h+='<option value="'+m+'.html"'+(m===cur?' selected':'')+'>'+lab(m)+'</option>';});h+='</select>';}}
+ return h;}})();
 </script></body></html>
